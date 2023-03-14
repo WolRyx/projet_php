@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Accueil</title>  
+  </head>
+
+  <body>
+    <h1>Ma bibliothèque</h1>
+
+    <!-- Affichage de la liste des livres -->
+    <h2>Mes livres</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>nom</th>
+            <th>auteur</th>
+            <th>date de parution</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- Boucle pour afficher chaque livre -->
+          <?php foreach ($bookController->read() as $book): ?>
+            <tr>
+              <td><?php echo $book['id'] ?></td>
+              <td><?php echo $book['livre_nom'] ?></td>
+              <td><?php echo $book['livre_auteur'] ?></td>
+              <td><?php echo $book['livre_date_sortie'] ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+
+    <!-- Formulaire d'ajout d'un livre -->
+    <h3>Ajouter un livre</h3>
+      <form action="/addBook" method="post">
+        <input type="text" name="nom" placeholder="nom du livre">
+        <input type="text" name="auteur" placeholder="auteur du livre">
+        <input type="date" name="date" placeholder="date de parution">
+        <button type="submit">Enregistrer le livre</button>
+      </form>
+
+    <!-- Formulaire de modification d'un livre -->
+    <h3>Modifier un livre</h3>
+      <form action="/updateBook" method="post">
+        <input type="text" name="id" placeholder="id du livre">
+        <input type="text" name="nom" placeholder="nom du livre">
+        <input type="text" name="auteur" placeholder="auteur du livre">
+        <input type="date" name="date" placeholder="date de parution">
+        <button type="submit">Modifier le livre</button>
+      </form>
+
+    <!-- Formulaire de suppression d'un livre -->
+    <h3>Supprimer un livre</h3>
+      <form action="/deleteBook" method="post">
+        <input type="text" name="id" placeholder="id du livre">
+        <button type="submit">Supprimer le livre</button>
+      </form>     
+  </body>
+</html>
